@@ -1,0 +1,59 @@
+.about-page {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.about-header {
+  background-color: #3f51b5;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: left;
+  padding: 15px 30px;
+  letter-spacing: 0.5px;
+}
+
+.about-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+  padding: 40px 60px;
+}
+
+.about-image img {
+  width: 260px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+  max-width: 800px;
+  font-size: 1rem;
+  color: #222;
+  line-height: 1.7;
+}
+
+.about-text strong {
+  color: #000;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .about-image img {
+    width: 200px;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+}
