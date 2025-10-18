@@ -39,7 +39,7 @@ const DoctorDashboard = () => {
 
         <div className="doctor-card">
           <img
-            src="/doctor-illustration.png"
+            src="C:/SHUBAN/doctor.jpg"
             alt="Doctor Illustration"
             className="doctor-image"
           />
