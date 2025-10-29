@@ -8,7 +8,7 @@ const AboutDoctor = () => (
     <div className="about-content">
       <div className="about-image">
         <img
-          src="/doctor-photo.png"  // replace with your actual image name in /public folder
+          src="\doctor.jpg"  // replace with your actual image name in /public folder
           alt="Doctor Image"
         />
       </div>

@@ -17,7 +17,7 @@ const DoctorDashboard = () => {
       <aside className="sidebar">
         <div className="sidebar-header">
           <div className="logo-circle">
-            <img src="https://chatgpt.com/backend-api/estuary/public_content/enc/eyJpZCI6Im1fNjhlZmUxNzE4ZGJjODE5MWFmNmJhMzcyYzYzYzc1OWQ6ZmlsZV8wMDAwMDAwMDg2MTQ2MjA2YjQyMGQ1MWQ4MGY5YzFlMCIsInRzIjoiMjAzNzkiLCJwIjoicHlpIiwiY2lkIjoiMSIsInNpZyI6ImQ2NDYwNTMwMzFiNmU2OGFhMTBkYjVmMmVmNjkxZDY4MzA4MzM2MmQxMDdlY2U4MDM5MDVhNTc3ZTAzYzgxNTEiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsLCJjcCI6bnVsbCwibWEiOm51bGx9" alt="Logo" className="logo-img" />
+            <img src="\logo.png" alt="Logo" className="logo-img" />
           </div>
         </div>
 
@@ -39,7 +39,7 @@ const DoctorDashboard = () => {
 
         <div className="doctor-card">
           <img
-            src="C:/SHUBAN/doctor.jpg"
+            src="\doctor.jpg"
             alt="Doctor Illustration"
             className="doctor-image"
           />

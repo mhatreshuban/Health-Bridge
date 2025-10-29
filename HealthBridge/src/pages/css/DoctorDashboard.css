@@ -110,8 +110,8 @@
 }
 
 .doctor-image {
-  width: 400px; /* significantly larger doctor illustration */
-  height: auto;
+  width: 200px; /* significantly larger doctor illustration */
+  height: 100px;
 }
 
 /* Buttons */
