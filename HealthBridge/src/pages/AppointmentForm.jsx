@@ -101,7 +101,7 @@ const AppointmentForm = () => {
 
         <h4>Timing's Available</h4>
         <div className="button-group">
-          {["11:00 am", "11:30 am", "12 pm", "1 pm"].map((time, i) => (
+          {["11:00 am", "11:30", "12", "1"].map((time, i) => (
             <button
               type="button"
               key={i}
