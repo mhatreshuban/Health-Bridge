@@ -1,0 +1,116 @@
+/* RESET DARK BACKGROUND */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 45%, #fdfefe 100%) !important;
+  min-height: 100vh;
+}
+
+/* FULL CENTER */
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+
+  /* soft light gradients */
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.1), transparent 28%);
+}
+
+/* CARD */
+.admin-card {
+  width: 100%;
+  max-width: 420px;
+
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 28px;
+
+  padding: 40px 32px;
+  text-align: center;
+
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* BADGE */
+.admin-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+/* TITLE */
+.admin-title {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 28px;
+  color: #0f172a;
+}
+
+/* FORM */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* INPUT */
+.admin-input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #dbe4f0;
+  background: #f8fbff;
+  font-size: 16px;
+  color: #1e293b;
+  transition: 0.25s ease;
+}
+
+.admin-input::placeholder {
+  color: #94a3b8;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #60a5fa;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
+}
+
+/* BUTTON */
+.admin-btn {
+  margin-top: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.2);
+}
+
+.admin-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ERROR */
+.admin-error {
+  margin-top: 14px;
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 10px;
+  border-radius: 12px;
+}

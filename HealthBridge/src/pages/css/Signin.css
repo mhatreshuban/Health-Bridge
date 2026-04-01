@@ -1,53 +1,175 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 45%, #fdfefe 100%);
+  min-height: 100vh;
+  color: #1e293b;
+}
+
 .signin-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #1f1f1f;
+  padding: 24px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.1), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.08), transparent 24%);
 }
 
 .signin-card {
-  background-color: #e0e0e0;
-  padding: 2rem 3rem;
-  border-radius: 20px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 430px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  border-radius: 30px;
+  padding: 40px 34px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(10px);
   text-align: center;
-  width: 350px;
+}
+
+.signin-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+  letter-spacing: 0.4px;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.16);
+}
+
+.signin-logo-wrapper {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 18px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .signin-logo {
-  width: 150px;
-  margin-bottom: 20px;
+  width: 82px;
+  height: auto;
+  object-fit: contain;
 }
 
-h2 {
-  color: #333;
-  margin-bottom: 1rem;
+.signin-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
-input {
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.signin-subtitle {
+  margin: 12px 0 28px;
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-.btn {
-  background-color: #2196f3;
-  color: white;
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.signin-input-group {
+  text-align: left;
+}
+
+.signin-input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.signin-input {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid #dbe4f0;
+  background: #f8fbff;
+  color: #1e293b;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+.signin-input::placeholder {
+  color: #94a3b8;
+}
+
+.signin-input:focus {
+  outline: none;
+  border-color: #60a5fa;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.14);
+}
+
+.signin-btn {
+  margin-top: 6px;
+  width: 100%;
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 1rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.2);
 }
 
-.btn:hover {
-  background-color: #1976d2;
+.signin-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.97;
 }
 
 .error {
-  color: red;
-  margin-top: 10px;
+  margin-top: 16px;
+  color: #dc2626;
+  font-size: 15px;
+  font-weight: 600;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 12px 14px;
+  border-radius: 14px;
+}
+
+@media (max-width: 768px) {
+  .signin-card {
+    padding: 30px 22px;
+    border-radius: 24px;
+  }
+
+  .signin-title {
+    font-size: 32px;
+  }
+
+  .signin-subtitle {
+    font-size: 15px;
+  }
+
+  .signin-logo-wrapper {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+  }
+
+  .signin-logo {
+    width: 66px;
+  }
 }

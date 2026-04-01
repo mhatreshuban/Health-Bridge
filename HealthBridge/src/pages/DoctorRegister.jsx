@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
-import "./css/Register.css"; // ✅ ADD THIS
+import "./css/DoctorRegister.css";
 
-const Register = () => {
+const DoctorRegister = () => {
   const [fullName, setFullName] = useState("");
+  const [specialty, setSpecialty] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -12,7 +13,7 @@ const Register = () => {
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
+  const handleDoctorRegister = async (e) => {
     e.preventDefault();
     setErrorMsg("");
     setSuccessMsg("");
@@ -35,50 +36,65 @@ const Register = () => {
     const user = data?.user;
 
     if (!user) {
-      setErrorMsg("Signup worked, but no user was returned.");
+      setErrorMsg(
+        "Signup worked, but no user was returned. Turn off email confirmation and try again."
+      );
       return;
     }
 
-    const { error: patientError } = await supabase.from("patients").insert({
+    const { error: doctorError } = await supabase.from("doctors").insert({
       id: user.id,
-      patients_name: fullName,
+      full_name: fullName,
       email: email,
+      specialization: specialty,
+      is_admin: true,
     });
 
-    if (patientError) {
-      setErrorMsg(patientError.message);
+    if (doctorError) {
+      setErrorMsg(doctorError.message);
       return;
     }
 
-    setSuccessMsg("Patient registration successful.");
+    setSuccessMsg("Doctor registered successfully. You can now log in from Admin Login.");
+
     setFullName("");
+    setSpecialty("");
     setEmail("");
     setPassword("");
     setConfirmPassword("");
 
-    setTimeout(() => navigate("/signin"), 2000);
+    setTimeout(() => navigate("/admin-login"), 2000);
   };
 
   return (
-    <div className="register-page">
-      <div className="register-card">
-        <span className="register-badge">Health Bridge Clinic</span>
+    <div className="doctor-register-page">
+      <div className="doctor-register-card">
+        <span className="doctor-register-badge">Health Bridge Clinic</span>
 
-        <h2 className="register-title">Create Patient Account</h2>
+        <h2 className="doctor-register-title">Create Doctor Account</h2>
 
-        <form onSubmit={handleRegister} className="register-form">
+        <form onSubmit={handleDoctorRegister} className="doctor-register-form">
           <input
-            className="register-input"
             type="text"
-            placeholder="Full name"
+            className="doctor-register-input"
+            placeholder="Doctor full name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
           />
 
           <input
-            className="register-input"
+            type="text"
+            className="doctor-register-input"
+            placeholder="Specialty"
+            value={specialty}
+            onChange={(e) => setSpecialty(e.target.value)}
+            required
+          />
+
+          <input
             type="email"
+            className="doctor-register-input"
             placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -86,8 +102,8 @@ const Register = () => {
           />
 
           <input
-            className="register-input"
             type="password"
+            className="doctor-register-input"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -95,24 +111,24 @@ const Register = () => {
           />
 
           <input
-            className="register-input"
             type="password"
+            className="doctor-register-input"
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
 
-          <button type="submit" className="register-btn">
-            Register
+          <button type="submit" className="doctor-register-btn">
+            Doctor Register
           </button>
         </form>
 
-        {errorMsg && <p className="error-msg">{errorMsg}</p>}
-        {successMsg && <p className="success-msg">{successMsg}</p>}
+        {errorMsg && <p className="doctor-register-error">{errorMsg}</p>}
+        {successMsg && <p className="doctor-register-success">{successMsg}</p>}
       </div>
     </div>
   );
 };
 
-export default Register;
+export default DoctorRegister;

@@ -13,52 +13,104 @@ const DoctorDashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      {/* Sidebar */}
       <aside className="sidebar">
-        <div className="sidebar-header">
-          <div className="logo-circle">
-            <img src="\logo.png" alt="Logo" className="logo-img" />
+        <div className="sidebar-content">
+          <div className="sidebar-top">
+            <div className="logo-circle">
+              <img
+                src="/logo.png"
+                alt="Health Bridge Logo"
+                className="logo-img"
+              />
+            </div>
+
+            <div className="brand-text">
+              <h2>Health Bridge</h2>
+              <p>Doctor Panel</p>
+            </div>
           </div>
+
+          <nav className="menu">
+            <Link to="/dashboard" className="menu-item active">
+              Home
+            </Link>
+            <Link to="/about-doctor" className="menu-item">
+              Doctor Profile
+            </Link>
+            <Link to="/schedule" className="menu-item">
+              Schedule
+            </Link>
+            <Link to="/appointment" className="menu-item">
+              Appointments
+            </Link>
+          </nav>
         </div>
 
         <button className="logout-btn" onClick={handleLogout}>
           Log Out
         </button>
-
-        <nav className="menu">
-          <Link to="/dashboard" className="menu-item">Home</Link>
-          <Link to="/dashboard/about" className="menu-item">Doctor</Link>
-          <Link to="/dashboard/schedule" className="menu-item">Schedule</Link>
-          <Link to="/dashboard/appointment" className="menu-item">Appointment</Link>
-        </nav>
       </aside>
 
-      {/* Main Content */}
       <main className="main-section">
-        <h1 className="title">Appointment Booking</h1>
-
-        <div className="doctor-card">
-          <img
-            src="\doctor.jpg"
-            alt="Doctor Illustration"
-            className="doctor-image"
-          />
+        <div className="topbar">
+          <p className="welcome-tag">Welcome back</p>
+          <h1 className="title">Doctor Dashboard</h1>
+          <p className="subtitle">
+            Manage appointments, availability, and your profile in one place.
+          </p>
         </div>
 
-        <div className="btn-group">
-          <button
-            className="primary-btn"
-            onClick={() => navigate("/dashboard/appointment")}
-          >
-            Book Appointment
-          </button>
-          <button
-            className="primary-btn"
-            onClick={() => navigate("/dashboard/schedule")}
-          >
-            Appointment Available
-          </button>
-        </div>
+        <section className="hero-card">
+          <div className="hero-text">
+            <span className="hero-badge">Smart Appointment Management</span>
+            <h2>Make your schedule clean, fast, and organized.</h2>
+            <p>
+              View appointments, update your available time slots, and keep your
+              practice running smoothly with a modern dashboard.
+            </p>
+
+            <div className="btn-group">
+              <button
+                className="primary-btn"
+                onClick={() => navigate("/appointment")}
+              >
+                Book Appointment
+              </button>
+
+              <button
+                className="secondary-btn"
+                onClick={() => navigate("/schedule")}
+              >
+                View Availability
+              </button>
+            </div>
+          </div>
+
+          <div className="hero-image-card">
+            <img
+              src="/doctor.jpg"
+              alt="Doctor Illustration"
+              className="doctor-image"
+            />
+          </div>
+        </section>
+
+        <section className="stats-grid">
+          <div className="info-card">
+            <h3>Appointments</h3>
+            <p>Check and manage all booked appointments quickly.</p>
+          </div>
+
+          <div className="info-card">
+            <h3>Schedule</h3>
+            <p>Update your available dates and time slots easily.</p>
+          </div>
+
+          <div className="info-card">
+            <h3>Profile</h3>
+            <p>Keep your doctor information updated and professional.</p>
+          </div>
+        </section>
       </main>
     </div>
   );

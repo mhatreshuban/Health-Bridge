@@ -1,62 +1,102 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { supabase } from "../supabaseClient";
 import "./css/DoctorSchedule.css";
 
 const DoctorSchedule = () => {
-  const schedule = {
-    1: ["10:00 AM", "2:00 PM"],
-    2: ["11:00 AM"],
-    4: ["9:30 AM", "1:30 PM"],
-    5: ["3:00 PM"],
-    7: ["10:30 AM"],
-    10: ["12:00 PM", "4:00 PM"],
-    12: ["9:00 AM"],
-    15: ["11:30 AM", "2:30 PM"],
-    18: ["10:00 AM"],
-    20: ["1:00 PM", "3:30 PM"],
-    22: ["9:30 AM"],
-    25: ["2:00 PM"],
+  const [slots, setSlots] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchSlots();
+  }, []);
+
+  const fetchSlots = async () => {
+    const { data, error } = await supabase
+      .from("doctor_slots")
+      .select("*")
+      .order("slot_date", { ascending: true })
+      .order("slot_time", { ascending: true });
+
+    if (!error) {
+      setSlots(data || []);
+    }
+
+    setLoading(false);
   };
 
-  const totalDays = 30;
-  const startDay = 1; // 1 = Monday (you can shift it)
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
+
+  const formatTime = (timeString) => {
+    if (!timeString) return "";
+    const [hours, minutes] = timeString.split(":");
+    const date = new Date();
+    date.setHours(Number(hours), Number(minutes), 0);
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
+  const availableCount = slots.filter((slot) => !slot.is_booked).length;
+  const bookedCount = slots.filter((slot) => slot.is_booked).length;
 
   return (
-    <div className="doctor-schedule">
-      <header className="schedule-header">
-        Doctor Availability - <span>Dr. John Doe</span> (September 2025)
-      </header>
+    <div className="schedule-page">
+      <div className="schedule-header">
+        <div>
+          <h1>Doctor Schedule</h1>
+          <p>View all available and booked slots in one place.</p>
+        </div>
 
-      <div className="calendar-grid">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-          <div key={day} className="calendar-day-name">
-            {day}
+        <div className="schedule-summary">
+          <div className="summary-card available-summary">
+            <h3>{availableCount}</h3>
+            <span>Available Slots</span>
           </div>
-        ))}
 
-        {Array.from({ length: startDay }).map((_, i) => (
-          <div key={`empty-${i}`} className="calendar-empty"></div>
-        ))}
-
-        {Array.from({ length: totalDays }, (_, i) => {
-          const day = i + 1;
-          const times = schedule[day];
-
-          return (
-            <div key={day} className="calendar-cell">
-              <h4 className="day-number">{day}</h4>
-              {times ? (
-                times.map((t) => (
-                  <div key={t} className="time-slot">
-                    {t}
-                  </div>
-                ))
-              ) : (
-                <div className="not-available">Not Available</div>
-              )}
-            </div>
-          );
-        })}
+          <div className="summary-card booked-summary">
+            <h3>{bookedCount}</h3>
+            <span>Booked Slots</span>
+          </div>
+        </div>
       </div>
+
+      {loading ? (
+        <p className="no-slots">Loading schedule...</p>
+      ) : slots.length === 0 ? (
+        <p className="no-slots">No schedule available yet.</p>
+      ) : (
+        <div className="schedule-grid">
+          {slots.map((slot) => (
+            <div key={slot.id} className="schedule-card">
+              <div className="card-top">
+                <span className="date-chip">{formatDate(slot.slot_date)}</span>
+
+                <span className={`status ${slot.is_booked ? "booked" : "available"}`}>
+                  {slot.is_booked ? "Booked" : "Available"}
+                </span>
+              </div>
+
+              <h2>{formatTime(slot.slot_time)}</h2>
+
+              <p>
+                {slot.is_booked
+                  ? "This slot has already been reserved."
+                  : "This slot is open for patients to book."}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
